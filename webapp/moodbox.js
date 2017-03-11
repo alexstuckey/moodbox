@@ -24,7 +24,7 @@ function requestUpdate()
 
     console.log(d);
     handleData(d);
-    changeTrack(window.theQueue[0].title, window.theQueue[0].artwork, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
+    changeTrack(window.theQueue[0].title, window.theQueue[0].artwork_url, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
 
   }).fail(function(e){
     console.log("error (probably invalid JSON)",e)});
@@ -40,7 +40,7 @@ function requestNextSong()
 {
   // Remove the first element from theQueue
   window.theQueue.shift();
-  changeTrack(window.theQueue[0].title, window.theQueue[0].artwork, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
+  changeTrack(window.theQueue[0].title, window.theQueue[0].artwork_url, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
   // http://localhost/api.php?action=nextsong
   var jqxhr = $.getJSON(API_URL + '?action=nextsong');
 }
