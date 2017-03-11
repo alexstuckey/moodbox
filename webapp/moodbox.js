@@ -3,9 +3,13 @@
 window.data = {};
 window.playing = true;
 
+var queue = [];
+
 $(document).ready(function(){
 
   requestUpdate();
+
+  changeTrack(queue[0].title, queue[0].artwork, queue[0].length, queue[0].artist);
 
   setInterval(function(){requestUpdate()}, 1000);
   console.log("doc ready");
@@ -21,18 +25,7 @@ function requestUpdate()
     console.log(d);
     data = d;
 
-    // If data is an empty object
-    if(data.length == 0)
-    {
-
-    }
-    else
-    {
-      // $("#track_name").text(data.queue[0].title);
-      // $("#album_artwork").attr("src",data.queue[0].artwork);
-      // $("#track_artist").text(data.queue[0].artist);
-      changeTrack(data.queue[0].title, data.queue[0].artwork, data.queue[0].length, data.queue[0].artist);
-    }
+    queue = data.queue;
 
   }).fail(function(e){
     console.log("error (probably invalid JSON)",e)});
