@@ -1,6 +1,7 @@
 // moodbox.js
 
 window.data = {};
+window.playing = true;
 
 $(document).ready(function(){
 
@@ -33,7 +34,8 @@ function requestUpdate()
       changeTrack(data.queue[0].title, data.queue[0].artwork, data.queue[0].length, data.queue[0].artist);
     }
 
-  }).fail(function(e){console.log("error (probably invalid JSON)");console.log(e)})
+  }).fail(function(e){
+    console.log("error (probably invalid JSON)",e)});
 }
 
 function requestNextSong()
@@ -41,7 +43,9 @@ function requestNextSong()
   // http://localhost/api.php?action=nextsong
   var jqxhr = $.getJSON('http://localhost/api.php?action=nextsong');
   changeTrack(data.queue[1].title, data.queue[1].artwork, data.queue[1].length, data.queue[1].artist);
-  // $("#track_name").text(data.queue[1].title);
-  // $("#album_artwork").attr("src",data.queue[1].artwork);
-  // $("#track_artist").text(data.queue[1].artist);
+}
+
+function requestPause()
+{
+  var jqxhr = $.getJSON('http://localhost/api.php?action=pause');
 }
