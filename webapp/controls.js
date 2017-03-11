@@ -25,13 +25,13 @@ var volume = function(d) {
 
 
 
-var changeTrack = function(name, art, length, artist) {
+var changeTrack = function(name, art, length, artist, mood) {
   document.getElementById('track_name').textContent = name;
   document.getElementById('track_artist').textContent = artist;
   document.getElementById('track_art').src = art;
-
+  document.getElementById('mood_label').textContent = mood;
 
   // Track progress in percent
   var progress = 75;
-  document.getElementById('track_progress').css('width', progress+'%').attr('aria-valuenow', progress);
+  //document.getElementById('track_progress').css('width', progress+'%').attr('aria-valuenow', progress);
 }
