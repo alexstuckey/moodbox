@@ -38,9 +38,6 @@ function handleData(d)
 
 function requestNextSong()
 {
-  // Remove the first element from theQueue
-  window.theQueue.shift();
-  changeTrack(window.theQueue[0].title, window.theQueue[0].artwork_url, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
   // http://localhost/api.php?action=nextsong
   var jqxhr = $.getJSON(API_URL + '?action=nextsong');
 }
