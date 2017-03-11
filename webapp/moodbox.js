@@ -27,9 +27,10 @@ function requestUpdate()
     }
     else
     {
-      $("#track_name").text(data.queue[0].title);
-      $("#album_artwork").attr("src",data.queue[0].artwork);
-      $("#track_artist").text(data.queue[0].artist);
+      // $("#track_name").text(data.queue[0].title);
+      // $("#album_artwork").attr("src",data.queue[0].artwork);
+      // $("#track_artist").text(data.queue[0].artist);
+      changeTrack(data.queue[0].title, data.queue[0].artwork, data.queue[0].length, data.queue[0].artist);
     }
 
   }).fail(function(e){console.log("error (probably invalid JSON)");console.log(e)})
@@ -39,7 +40,8 @@ function requestNextSong()
 {
   // http://localhost/api.php?action=nextsong
   var jqxhr = $.getJSON('http://localhost/api.php?action=nextsong');
-  $("#track_name").text(data.queue[1].title);
-  $("#album_artwork").attr("src",data.queue[1].artwork);
-  $("#track_artist").text(data.queue[1].artist);
+  changeTrack(data.queue[1].title, data.queue[1].artwork, data.queue[1].length, data.queue[1].artist);
+  // $("#track_name").text(data.queue[1].title);
+  // $("#album_artwork").attr("src",data.queue[1].artwork);
+  // $("#track_artist").text(data.queue[1].artist);
 }
