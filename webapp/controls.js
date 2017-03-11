@@ -33,5 +33,5 @@ var changeTrack = function(name, art, length, artist) {
 
   // Track progress in percent
   var progress = 75;
-  document.getElementById('track_progress').css('width', valeur+'%').attr('aria-valuenow', valeur);
+  document.getElementById('track_progress').css('width', progress+'%').attr('aria-valuenow', progress);
 }
