@@ -29,7 +29,7 @@
         <h1 id="track_name">Cold Fire in Rain</h1>
       </div>
       <br>
-      <img data-src="holder.js/300x300" class="artwork rounded mx-auto d-block" alt="300x300" src="http://is5.mzstatic.com/image/thumb/Music30/v4/2b/11/fc/2b11fc25-a9cc-0055-b77f-42d06bb3f793/source/600x600bb.jpg" data-holder-rendered="true">
+      <img data-src="holder.js/300x300" class="artwork rounded mx-auto d-block" id="track_art" alt="300x300" src="http://is5.mzstatic.com/image/thumb/Music30/v4/2b/11/fc/2b11fc25-a9cc-0055-b77f-42d06bb3f793/source/600x600bb.jpg" data-holder-rendered="true">
       <br>
       <div class="row justify-content-center">
         <div class="col-10">
@@ -43,12 +43,12 @@
       <br>
       <div class="row justify-content-center">
           <div class="btn-group">
-            <button onclick="Play('music.mp3','audio');" class="btn btn-custom"><span title="Play" id="play" class="fa fa-play aligned"></span></button>
-            <button onclick="Stop('music.mp3','audio');" class="btn btn-custom"><span title="Stop" id="stop" class="fa fa-stop aligned"></span></button>
-            <button onclick="Backward5('music.mp3','audio');" class="btn btn-custom"><span title="-5 seconds" id="play" class="fa fa-fast-backward aligned"></span></button>
-            <button onclick="Forward5('music.mp3','audio');" class="btn btn-custom"><span title="+5 seconds" id="play" class="fa fa-fast-forward aligned"></span></button>
-            <button onclick="VolumeUp('music.mp3','audio');" class="btn btn-custom"><span title="Volume Up" id="volumeup" class="fa fa-plus aligned"></span></button>
-            <button onclick="VolumeDown('music.mp3','audio');" class="btn btn-custom"><span title="Volume Down" id="volumedown" class="fa fa-minus aligned"></span></button>
+            <button onclick="play();" class="btn btn-custom"><span title="Play" id="play" class="fa fa-play aligned"></span></button>
+            <button onclick="stop();" class="btn btn-custom"><span title="Stop" id="stop" class="fa fa-stop aligned"></span></button>
+            <button onclick="backward(5);" class="btn btn-custom"><span title="-5 seconds" id="play" class="fa fa-fast-backward aligned"></span></button>
+            <button onclick="forward(5);" class="btn btn-custom"><span title="+5 seconds" id="play" class="fa fa-fast-forward aligned"></span></button>
+            <button onclick="volume(1);" class="btn btn-custom"><span title="Volume Up" id="volumeup" class="fa fa-plus aligned"></span></button>
+            <button onclick="volume(-1);" class="btn btn-custom"><span title="Volume Down" id="volumedown" class="fa fa-minus aligned"></span></button>
           </div>
       </div>
       
@@ -67,6 +67,7 @@
 
 
     <!-- Load all the moodbox.js song controls etc. -->
+    <script src="controls.js" type="text/javascript"></script>
     <script src="moodbox.js" type="text/javascript"></script>
   </body>
 </html>
