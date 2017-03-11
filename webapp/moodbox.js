@@ -4,10 +4,14 @@ $(document).ready(function(){
 
   setTimeout(function(){
     // http://localhost/api.php?action=update
-      $.getJSON('dummyjson.html',function(data){
-          console.log(data);
-      }
-    );
+    var jqxhr = $.getJSON('http://drop.robbie.xyz/fbmoodbox/dummyjson.json',function(data){
+      console.log(data);
+    })
+    .fail(function(e){
+      console.log(e.responseText);
+      console.log(JSON.parse(e.responseText));
+    })
+
   }, 1000);
 
 });
