@@ -61,11 +61,8 @@ function getTrack($emotion) {
     }
 
     $tracks_json = json_encode($tracks_array);
-<<<<<<< HEAD
-=======
 
     print_r($tracks_json);
->>>>>>> ad0a4df20465b0d1f442ffb08b5f688d15afabe7
 
     #Storing the songs to JSON text file.
     $serialise = serialize($tracks_array);
