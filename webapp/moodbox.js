@@ -1,8 +1,9 @@
 // moodbox.js
 
-window.data = {};
+//window.data = {};
 window.playing = true;
 window.theQueue = [];
+window.mood = "";
 
 $(document).ready(function(){
 
@@ -21,7 +22,7 @@ function requestUpdate()
 
     console.log(d);
     handleData(d);
-    changeTrack(window.theQueue[0].title, window.theQueue[0].artwork, window.theQueue[0].length, window.theQueue[0].artist);
+    changeTrack(window.theQueue[0].title, window.theQueue[0].artwork, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
 
   }).fail(function(e){
     console.log("error (probably invalid JSON)",e)});
@@ -30,15 +31,16 @@ function requestUpdate()
 function handleData(d)
 {
   window.theQueue = d.queue;
+  window.mood = d.mood;
 }
 
 function requestNextSong()
 {
+  // Remove the first element from theQueue
   window.theQueue.shift();
-  changeTrack(window.theQueue[0].title, window.theQueue[0].artwork, window.theQueue[0].length, window.theQueue[0].artist);
+  changeTrack(window.theQueue[0].title, window.theQueue[0].artwork, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
   // http://localhost/api.php?action=nextsong
   var jqxhr = $.getJSON('http://localhost/api.php?action=nextsong');
-  
 }
 
 function requestPause()
