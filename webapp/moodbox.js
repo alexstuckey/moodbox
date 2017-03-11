@@ -15,7 +15,7 @@ function requestUpdate()
 {
   // http://localhost/api.php?action=update
   console.log("requested update");
-  var jqxhr = $.getJSON('http://drop.robbie.xyz/fbmoodbox/dummyjson.json',function(d){
+  var jqxhr = $.getJSON('http://drop.robbie.xyz/fbmoodbox/dummyjson.php',function(d){
 
     console.log(d);
     data = d;
