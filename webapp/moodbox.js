@@ -2,6 +2,7 @@
 
 //window.data = {};
 window.playing = true;
+window.currentlyPlaying = "";
 window.theQueue = [];
 window.mood = "";
 window.API_URL = "http://community.dur.ac.uk/mohammed.m.rahman/moodbox/backend/api.php";
@@ -16,6 +17,9 @@ $(document).ready(function(){
 
   setInterval(function(){
     window.currentProgress += 0.2;
+    if (window.currentProgress > 100) {
+      window.currentProgress = 100;
+    }
     $("#track_progress").css('width', window.currentProgress+'%').attr('aria-valuenow', window.currentProgress);
   }, 30);
 
@@ -31,6 +35,11 @@ function requestUpdate()
     console.log(d);
     handleData(d);
     changeTrack(window.theQueue[0].title, window.theQueue[0].artwork_url, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
+    if (window.currentlyPlaying !== window.theQueue[0].title) {
+      window.currentProgress = 0.0;
+      window.currentlyPlaying = window.theQueue[0].title;
+    }
+    
 
   }).fail(function(e){
     console.log("error (probably invalid JSON)",e)});
