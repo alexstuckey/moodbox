@@ -22,17 +22,7 @@ function getSoundcloudData($url) {
 
 function getTrack($emotion) {
 
-    if ($emotion == "happy") {
-
-        //Getting happy songs.
-        $response = getSoundcloudData('http://api.soundcloud.com/tracks?client_id=000b1c01843b18b6ef32eec96ce1fe86&tags=happy');
-
-    } elseif ($emotion == "sad") {
-
-        //Getting happy songs.
-        $response = getSoundcloudData('http://api.soundcloud.com/tracks?client_id=000b1c01843b18b6ef32eec96ce1fe86&tags=sad');
-
-    }
+    $response = getSoundcloudData("http://api.soundcloud.com/tracks?client_id=000b1c01843b18b6ef32eec96ce1fe86&tags=$emotion");
 
     $json  = json_decode($response,$assoc = TRUE);
 
@@ -61,8 +51,6 @@ function getTrack($emotion) {
     }
 
     $tracks_json = json_encode($tracks_array);
-
-    print_r($tracks_json);
 
     #Storing the songs to JSON text file.
     $serialise = serialize($tracks_array);
