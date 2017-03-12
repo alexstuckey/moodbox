@@ -1,17 +1,20 @@
 // Controls
 var play = function(){
-    if(playing)
-    {
-      var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
-      playing = false;
-    }else {
-      var jqxhr = $.getJSON(API_URL + '?action=control&command=play');
-      playing = true;
-    }
-  }
+  var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
+}
 
-var stop = function() {
-  // body...
+var pause = function() {
+  var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
+}
+
+var playpause = function(){
+  var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
+  if(playing){
+    playing = false;
+    $('.fa-pause').removeClass('fa-pause').addClass('fa-play');
+  }else{
+    $('.fa-play').removeClas('fa-play').addClass('fa-pause');
+  }
 }
 
 var backward = function(t) {
