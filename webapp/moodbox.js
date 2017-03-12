@@ -14,7 +14,6 @@ $(document).ready(function(){
   requestUpdate();
 
   setInterval(function(){requestUpdate()}, 1000);
-  console.log("doc ready");
 
   setInterval(function(){
     window.currentProgress += 0.2;
@@ -29,11 +28,9 @@ $(document).ready(function(){
 function requestUpdate()
 {
   // http://localhost/api.php?action=update
-  console.log("requested update");
   // http://drop.robbie.xyz/fbmoodbox/dummyjson.php
   var jqxhr = $.getJSON(API_URL + '?action=updateUI',function(d){
 
-    console.log(d);
     handleData(d);
     
     changeTrack(window.theQueue[window.currentTrack].title, window.theQueue[window.currentTrack].artwork_url, window.theQueue[window.currentTrack].length, window.theQueue[window.currentTrack].artist, window.mood);
