@@ -16,12 +16,15 @@ $(document).ready(function(){
   setInterval(function(){requestUpdate()}, 1000);
 
   setInterval(function(){
-    window.currentProgress += 0.2;
+    if (window.playing) {
+      window.currentProgress += 0.15;
+    }
+
     if (window.currentProgress > 100) {
       window.currentProgress = 100;
     }
     $("#track_progress").css('width', window.currentProgress+'%').attr('aria-valuenow', window.currentProgress);
-  }, 30);
+  }, 20);
 
 });
 
