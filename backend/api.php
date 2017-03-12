@@ -50,7 +50,9 @@ function getTrack($emotion) {
         //Array to append
         $song = array("title" => $title, "artist" => $artist, "artwork_url" => $artwork_url, "duration" => $duration, "stream_url" => $stream_url);
 
-        array_push($tracks_array["queue"], $song);
+        if ($artwork_url != null) {
+            array_push($tracks_array["queue"], $song);
+        }
 
 //        array_push($pi_songs,$stream_url);
 
