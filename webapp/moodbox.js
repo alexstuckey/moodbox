@@ -20,7 +20,7 @@ function requestUpdate()
   // http://localhost/api.php?action=update
   console.log("requested update");
   // http://drop.robbie.xyz/fbmoodbox/dummyjson.php
-  var jqxhr = $.getJSON(API_URL + '?action=update',function(d){
+  var jqxhr = $.getJSON(API_URL + '?action=updateUI',function(d){
 
     console.log(d);
     handleData(d);
