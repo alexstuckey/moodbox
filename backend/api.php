@@ -81,7 +81,6 @@ function updateUI() {
 }
 
 function controls() {
-
     return;
 }
 
