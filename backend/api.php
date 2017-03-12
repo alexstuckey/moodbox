@@ -100,7 +100,7 @@ switch ($_GET['action']) {
         break;
 
     case 'control':
-        $command = $_GET[""];
+        $command = $_GET["command"];
         return updateUI();
         break;
 }
