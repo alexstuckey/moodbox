@@ -29,6 +29,10 @@ function getTrack($emotion) {
     //Making track JSON
     $tracks_array = array("queue" => array(), "mood" => $emotion);
 
+//    $pi_songs = array();
+
+    $pi_songs = "";
+
     for ($x = 0; $x < count($json); $x++) {
 
         $title = $json[$x]["title"];
@@ -48,6 +52,10 @@ function getTrack($emotion) {
 
         array_push($tracks_array["queue"], $song);
 
+//        array_push($pi_songs,$stream_url);
+
+        $pi_songs = $pi_songs . "," . $stream_url;
+
     }
 
     $tracks_json = json_encode($tracks_array);
@@ -63,11 +71,11 @@ function getTrack($emotion) {
     fclose($file);
 
     //Returning URLs
-    return $tracks_json;
+//    return $tracks_json;
+
+    return $pi_songs;
 
 }
-
-getTrack("happy");
 
 //Updates the UI with current songs.
 function updateUI() {
@@ -80,11 +88,52 @@ function updateUI() {
 
 }
 
-function controls() {
-    return;
+function control($command) {
+
+    $control_file = fopen("control.txt", "w");
+
+    switch ($command) {
+
+        //Registration Functions.
+        case 'play':
+            fwrite($control_file, "play");
+            break;
+
+        case 'next':
+            fwrite($control_file, "next");
+            break;
+
+        case 'previous':
+            fwrite($control_file, "previous");
+            break;
+
+        case 'stop':
+            fwrite($control_file, "stop");
+            break;
+
+        case 'pause':
+            fwrite($control_file, "pause");
+            break;
+
+    }
+
+    fclose($control_file);
+
 }
 
-#Case Statement that handles JSON too.
+function updatePi() {
+    $file = fopen("control.txt", "r");
+
+    $command = fread($file, filesize("control.txt"));
+
+    fclose($file);
+
+    unlink("control.txt");
+
+    return $command;
+}
+
+//Switch
 switch ($_GET['action']) {
 
     //Registration Functions.
@@ -100,7 +149,11 @@ switch ($_GET['action']) {
 
     case 'control':
         $command = $_GET["command"];
-        return updateUI();
+        control($command);
+        break;
+
+    case 'updatePi':
+        echo updatePi();
         break;
 }
 
