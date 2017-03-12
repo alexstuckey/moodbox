@@ -17,7 +17,7 @@ $(document).ready(function(){
   setInterval(function(){
     window.currentProgress += 0.2;
     $("#track_progress").css('width', window.currentProgress+'%').attr('aria-valuenow', window.currentProgress);
-  }, 100);
+  }, 30);
 
 });
 
