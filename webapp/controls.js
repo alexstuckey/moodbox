@@ -1,29 +1,33 @@
 // Controls
-var play = function(){
-  var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
-}
-
-var pause = function() {
-  var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
-}
+// var play = function(){
+//   var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
+// }
+//
+// var pause = function() {
+//   var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
+// }
 
 var playpause = function(){
   var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
+  console.log("called pause/play (?action=control&command=pause)");
   if(playing){
     playing = false;
     $('.fa-pause').removeClass('fa-pause').addClass('fa-play');
   }else{
-    $('.fa-play').removeClas('fa-play').addClass('fa-pause');
+    playing = true;
+    $('.fa-play').removeClass('fa-play').addClass('fa-pause');
   }
 }
 
 var backward = function(t) {
   var jqxhr = $.getJSON(API_URL + '?action=control&command=previous');
+  console.log("called previous (?action=control&command=previous)");
 }
 
 var forward = function(t) {
   //requestNextSong();
   var jqxhr = $.getJSON(API_URL + '?action=control&command=next');
+  console.log("called next (?action=control&command=next)");
 }
 
 var volume = function(d) {
