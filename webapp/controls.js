@@ -1,6 +1,13 @@
 // Controls
 var play = function(){
-    console.log("Boom!")
+    if(playing)
+    {
+      var jqxhr = $.getJSON(API_URL + '?action=pause');
+      playing = false;
+    }else {
+      var jqxhr = $.getJSON(API_URL + '?action=play');
+      playing = true;
+    }
   }
 
 var stop = function() {
@@ -8,11 +15,12 @@ var stop = function() {
 }
 
 var backward = function(t) {
-  // body...
+  var jqxhr = $.getJSON(API_URL + '?action=previous');
 }
 
 var forward = function(t) {
-  requestNextSong();
+  //requestNextSong();
+  var jqxhr = $.getJSON(API_URL + '?action=next');
 }
 
 var volume = function(d) {

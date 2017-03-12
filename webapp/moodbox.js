@@ -36,11 +36,11 @@ function handleData(d)
   window.mood = d.mood;
 }
 
-function requestNextSong()
-{
-  // http://localhost/api.php?action=nextsong
-  var jqxhr = $.getJSON(API_URL + '?action=nextsong');
-}
+// function requestNextSong()
+// {
+//   // http://localhost/api.php?action=nextsong
+//   var jqxhr = $.getJSON(API_URL + '?action=next');
+// }
 
 function requestPause()
 {
