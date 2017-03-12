@@ -22,14 +22,14 @@ var playpause = function(){
 var backward = function(t) {
   var jqxhr = $.getJSON(API_URL + '?action=control&command=previous');
   console.log("called previous (?action=control&command=previous)");
-  queuecount -= 1;
+  window.currentTrack -= 1;
 }
 
 var forward = function(t) {
-  //requestNextSong();
   var jqxhr = $.getJSON(API_URL + '?action=control&command=next');
   console.log("called next (?action=control&command=next)");
-  queuecount += 1;
+  window.currentTrack += 1;
+  changeTrack(window.theQueue[window.currentTrack].title, window.theQueue[window.currentTrack].artwork_url, window.theQueue[window.currentTrack].length, window.theQueue[window.currentTrack].artist, window.mood);
 }
 
 var volume = function(d) {
