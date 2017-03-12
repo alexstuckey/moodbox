@@ -6,6 +6,9 @@ import operator
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+import requests
+import json
+import urllib.request
 
 # # Api Script
 # _url = 'https://api.projectoxford.ai/emotion/v1.0/recognize'
@@ -208,7 +211,7 @@ def imageProcessing():
     return maxEmotionOverall, nextMaxEmotionOverall, personThere
 
 def generatePlaylist(maxEmo):
-    if maxEmo in ["sadness","happiness","neutral","anger","disgust","contempt"]:
+    if maxEmo in ["sadness","happiness","neutral","anger","disgust","contempt", "fear","surprise"]:
         print("suitable")
         if maxEmo == "sadness":
             playlist = "Sad"
@@ -216,6 +219,14 @@ def generatePlaylist(maxEmo):
             playlist = "Happy"
         elif maxEmo == "neutral":
             playlist = "Neutral"
+        elif maxEmo == "disgust":
+            playlist = "Disgust"
+        elif maxEmo == "contempt":
+            playlist = "Contempt"
+        elif maxEmo == "fear":
+            playlist = "Fear"
+        elif maxEmo == "surprise":
+            playlist = "Surprise"
         else:
             playlist = "Angry"
 
@@ -326,27 +337,32 @@ while cont == False:
         print("person not found")
     else:
         playlist = generatePlaylist(maxEmo)
+        try:
+            getJSONForMoodRequest = 'http://community.dur.ac.uk/mohammed.m.rahman/moodbox/backend/api.php?action=getTrack&emotion=' + str(playlist)
+            getJSONForMoodData = urllib.request.urlopen(getJSONForMoodRequest)
+            #print(getJSONForMoodData.read())
+        except ValueError:  # includes simplejson.decoder.JSONDecodeError
+            print('Decoding JSON has failed')
+        #Extract Playlist PlaylistUrl =
         print("playlist chosen", playlist)
         cont = True
     time.sleep(10)
 
-HappyPlaylist = "https://www.youtube.com/watch?v=PGJX9tutZEA"
-SadPlaylist = "https://www.youtube.com/watch?v=4N3N1MlvVc4"
-NeutralPlaylist = "https://www.youtube.com/watch?v=VjHMDlAPMUw"
-AngryPlaylist = "https://www.youtube.com/watch?v=00Z-Gbyb7l8"
 
-if playlist == "Happy":
-    os.system("echo add " + HappyPlaylist + " | nc -U /home/pi/vlc.sock")
-    print("Playing Happy Playlist")
+#Extract data:
+# parsed_json = json.loads(str(getJSONForMoodData.read()))
 
-elif playlist == "Sad":
-    os.system("echo add " + SadPlaylist + " | nc -U /home/pi/vlc.sock")
-    print("Playing Sad Playlist")
+# print(str(getJSONForMoodData.read()))
 
-elif playlist == "Angry":
-    os.system("echo add " + AngryPlaylist + " | nc -U /home/pi/vlc.sock")
-    print("Playing Angry Playlist")
+song_data = json.loads(getJSONForMoodData.read())
 
-else:
-    os.system("echo add " + NeutralPlaylist + " | nc -U /home/pi/vlc.sock")
-    print("Playing Neutral Playlist")
+songs = []
+
+for song in song_data['queue']:
+    # songs.append(song['stream_url'])
+    os.system("echo add " + song['stream_url'] + " | nc -U /home/pi/vlc.sock")
+
+
+
+pass
+# os.system("echo add " + songs[0] + " | nc -U /home/pi/vlc.sock")
