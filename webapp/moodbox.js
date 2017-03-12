@@ -45,9 +45,27 @@ function requestUpdate()
     console.log("error (probably invalid JSON)",e)});
 }
 
+function compareQueues(a, b) {
+  if (a.length === b.length) {
+
+    for (var i = 0; i < a.length; i++) {
+      if ( JSON.stringify(a[i]) !== JSON.stringify(b[i]) ) {
+        return false;
+      }
+    }
+
+    return true;
+    
+
+  } else {
+    return false;
+  }
+  
+}
+
 function handleData(d)
 {
-  if (window.theQueue == d.queue) {
+  if (compareQueues(window.theQueue, d.queue)) {
     // Same
   } else {
     // Sever has changed queue – should reset the index counter
