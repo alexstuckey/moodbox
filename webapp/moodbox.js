@@ -5,6 +5,7 @@ window.playing = true;
 window.theQueue = [];
 window.mood = "";
 window.API_URL = "http://community.dur.ac.uk/mohammed.m.rahman/moodbox/backend/api.php";
+window.currentProgress = 0.0;
 
 $(document).ready(function(){
 
@@ -12,6 +13,11 @@ $(document).ready(function(){
 
   setInterval(function(){requestUpdate()}, 1000);
   console.log("doc ready");
+
+  setInterval(function(){
+    window.currentProgress += 0.2;
+    $("#track_progress").css('width', window.currentProgress+'%').attr('aria-valuenow', window.currentProgress);
+  }, 100);
 
 });
 

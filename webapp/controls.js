@@ -39,7 +39,4 @@ var changeTrack = function(name, art, length, artist, mood) {
   document.getElementById('track_art').src = art;
   document.getElementById('mood_label').textContent = mood;
 
-  // Track progress in percent
-  var progress = 75;
-  //document.getElementById('track_progress').css('width', progress+'%').attr('aria-valuenow', progress);
 }
