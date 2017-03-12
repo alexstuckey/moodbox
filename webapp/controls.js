@@ -2,10 +2,10 @@
 var play = function(){
     if(playing)
     {
-      var jqxhr = $.getJSON(API_URL + '?action=pause');
+      var jqxhr = $.getJSON(API_URL + '?action=control&command=pause');
       playing = false;
     }else {
-      var jqxhr = $.getJSON(API_URL + '?action=play');
+      var jqxhr = $.getJSON(API_URL + '?action=control&command=play');
       playing = true;
     }
   }
@@ -15,12 +15,12 @@ var stop = function() {
 }
 
 var backward = function(t) {
-  var jqxhr = $.getJSON(API_URL + '?action=previous');
+  var jqxhr = $.getJSON(API_URL + '?action=control&command=previous');
 }
 
 var forward = function(t) {
   //requestNextSong();
-  var jqxhr = $.getJSON(API_URL + '?action=next');
+  var jqxhr = $.getJSON(API_URL + '?action=control&command=next');
 }
 
 var volume = function(d) {
