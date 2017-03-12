@@ -22,12 +22,14 @@ var playpause = function(){
 var backward = function(t) {
   var jqxhr = $.getJSON(API_URL + '?action=control&command=previous');
   console.log("called previous (?action=control&command=previous)");
+  queuecount -= 1;
 }
 
 var forward = function(t) {
   //requestNextSong();
   var jqxhr = $.getJSON(API_URL + '?action=control&command=next');
   console.log("called next (?action=control&command=next)");
+  queuecount += 1;
 }
 
 var volume = function(d) {

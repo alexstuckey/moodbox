@@ -7,6 +7,7 @@ window.theQueue = [];
 window.mood = "";
 window.API_URL = "http://community.dur.ac.uk/mohammed.m.rahman/moodbox/backend/api.php";
 window.currentProgress = 0.0;
+window.queueCount = 0;
 
 $(document).ready(function(){
 
@@ -34,12 +35,12 @@ function requestUpdate()
 
     console.log(d);
     handleData(d);
-    changeTrack(window.theQueue[0].title, window.theQueue[0].artwork_url, window.theQueue[0].length, window.theQueue[0].artist, window.mood);
-    if (window.currentlyPlaying !== window.theQueue[0].title) {
+    changeTrack(window.theQueue[queueCount].title, window.theQueue[queueCount].artwork_url, window.theQueue[queueCount].length, window.theQueue[queueCount].artist, window.mood);
+    if (window.currentlyPlaying !== window.theQueue[queueCount].title) {
       window.currentProgress = 0.0;
-      window.currentlyPlaying = window.theQueue[0].title;
+      window.currentlyPlaying = window.theQueue[queueCount].title;
     }
-    
+
 
   }).fail(function(e){
     console.log("error (probably invalid JSON)",e)});
