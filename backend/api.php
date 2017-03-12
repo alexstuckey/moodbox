@@ -122,15 +122,25 @@ function control($command) {
 }
 
 function updatePi() {
-    $file = fopen("control.txt", "r");
 
-    $command = fread($file, filesize("control.txt"));
+    if (file_exists("control.txt")) {
 
-    fclose($file);
+        $file = fopen("control.txt", "r");
 
-    unlink("control.txt");
+        $command = fread($file, filesize("control.txt"));
 
-    return $command;
+        fclose($file);
+
+        unlink("control.txt");
+
+        return $command;
+
+    } else {
+
+        return "nothing";
+    }
+
+
 }
 
 //Switch
